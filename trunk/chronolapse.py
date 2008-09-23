@@ -23,7 +23,15 @@ import wx, time, os, sys, shutil, cPickle, tempfile, textwrap, subprocess, getop
 from kml import *
 
 from PIL import Image
-from VideoCapture import Device
+
+try:
+    from VideoCapture import Device
+except:
+    if sys.platform.startswith('win'):
+        print 'VideoCapture library not found. Aborting'
+        sys.exit(1)
+    else:
+        pass
 
 from chronolapsegui import *
 

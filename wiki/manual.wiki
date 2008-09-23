@@ -1,6 +1,4 @@
 #labels Featured
-#Chronolapse Manual
-
 =Welcome to Chronolapse=
 ==Overview==
 

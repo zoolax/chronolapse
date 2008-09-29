@@ -16,7 +16,7 @@
         linux release-  mencoder executable?
 """
 
-VERSION = 'RC 1.1'
+VERSION = '1.0.0'
 
 import wx, time, os, sys, shutil, cPickle, tempfile, textwrap, subprocess, getopt, urllib, urllib2
 

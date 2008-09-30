@@ -14,9 +14,12 @@
         select which camera device #
         if going to linux, need to make annotate and pip copy over ctime info, since it isnt creation time there
         linux release-  mencoder executable?
+
+    @change: 1.0.1
+        - fixed outputting video to path with spaces - used a bit of a hack for mencoder to work -- issue 1
 """
 
-VERSION = '1.0.0'
+VERSION = '1.0.1'
 
 import wx, time, os, sys, shutil, cPickle, tempfile, textwrap, subprocess, getopt, urllib, urllib2
 
@@ -1679,12 +1682,21 @@ class ChronoFrame(chronoFrame):
         # get codec from select box
         codec = self.videocodeccombo.GetStringSelection()
 
-        # get output file name
-        outfile =  os.path.join(destfolder, 'timelapse.%s' % self.videoformatcombo.GetStringSelection())
-        count = 2
-        while os.path.isfile(outfile):
-            outfile =  os.path.join(destfolder, 'timelapse%d.%s'% (count, self.videoformatcombo.GetStringSelection()))
-            count += 1
+        # get output file name  ---  create in source folder then move bc of ANOTHER mencoder bug
+        timestamp = time.strftime('%Y-%m-%d_%H-%M-%S')
+
+        if (os.path.isfile(os.path.join(destfolder, 'timelapse_%s.%s' % (timestamp, self.videoformatcombo.GetStringSelection())))
+               or os.path.isfile( os.path.join(sourcefolder, 'timelapse_%s.%s' % (timestamp, self.videoformatcombo.GetStringSelection())))):
+
+            count = 2
+            while(os.path.isfile(os.path.join(destfolder, 'timelapse_%s_%d.%s' % (timestamp, count, self.videoformatcombo.GetStringSelection())))
+               or os.path.isfile( os.path.join(sourcefolder, 'timelapse_%s_%d.%s' % (timestamp, count, self.videoformatcombo.GetStringSelection())))):
+                count += 1
+
+            outfile = 'timelapse_%s_%d.%s' % (timestamp, count, self.videoformatcombo.GetStringSelection())
+
+        else:
+            outfile = 'timelapse_%s.%s' % (timestamp, self.videoformatcombo.GetStringSelection())
 
         # change cwd to image folder to stop mencoder bug
         try:
@@ -1705,14 +1717,27 @@ class ChronoFrame(chronoFrame):
         mencoderpath, path, fps, codec, outfile )
 
         self.debug("Calling: %s"%command)
-        proc = subprocess.Popen(command, shell=True)
+        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
   #      mencoder mf://*.jpg -mf w=800:h=600:fps=25:type=jpg -ovc lavc -lavcopts vcodec=mpeg4:mbd=2:trell -oac copy -o output.avi
 
-        proc.communicate()
+        stdout, stderr = proc.communicate()
+
+        returncode = proc.returncode
+
+        # mencoder error
+        if returncode > 0:
+            progressdialog.Destroy()
+
+            self.showWarning('MEncoder Error', stderr)
+            return
+
+        # move video file to destination folder
+        self.debug("Moving file from %s to %s" % (os.path.join(sourcefolder,outfile), os.path.join(destfolder, outfile)))
+        shutil.move(os.path.join(sourcefolder,outfile), os.path.join(destfolder, outfile))
 
         progressdialog.Destroy()
 
-        dlg = wx.MessageDialog(self, 'Encoding Complete!\nFile saved as %s'%outfile, 'Encoding Complete', style=wx.OK)
+        dlg = wx.MessageDialog(self, 'Encoding Complete!\nFile saved as %s'%os.path.join(destfolder, outfile), 'Encoding Complete', style=wx.OK)
         dlg.ShowModal()
         dlg.Destroy()
 

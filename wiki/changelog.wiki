@@ -1,0 +1,9 @@
+#summary Chronolapse Changelog
+#labels Featured
+
+= Change Log=
+
+  * V 1.0.1 - 2008/09/30
+    * - fixed outputting video to path with spaces - used a bit of a hack for mencoder to work -- issue 1
+
+  * V 1.0.0 - 2008/09/28 - Initial Release

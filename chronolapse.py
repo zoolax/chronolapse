@@ -1802,7 +1802,7 @@ a front end to mencode to take your series of images and turn them into a movie.
                 if choice == wx.ID_YES:
 
                     # check URL
-                    request = urllib2.Request(self.VERSIONCHECKPATH, urllib.urlencode([('verison',self.VERSION)]))
+                    request = urllib2.Request(self.VERSIONCHECKPATH, urllib.urlencode([('version',self.VERSION)]))
                     page = urllib2.urlopen(request)
 
                     #parse page

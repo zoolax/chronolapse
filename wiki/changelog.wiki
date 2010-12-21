@@ -5,11 +5,12 @@
 
   * V 1.0.2 - 2010/12/21
     * - Removed dependence on kml.pyc
-    * - Added -a flag for auto starting
-    * - Added minimizing to tray option
-    * - Added rotate option and renamed resize tab to adjust tab
+    * - Added -a flag for auto starting (issue 5)
+    * - Added minimizing to tray option (issue 5)
+    * - Added rotate option and renamed resize tab to adjust tab (issue 6)
+    * - fixed dual monitor support to work with any orientation or relative resolution (issue 4)
 
   * V 1.0.1 - 2008/09/30
-    * - fixed outputting video to path with spaces - used a bit of a hack for mencoder to work - - issue 1
+    * - fixed outputting video to path with spaces - used a bit of a hack for mencoder to work (issue 1)
 
   * V 1.0.0 - 2008/09/28 - Initial Release

@@ -38,9 +38,19 @@ Item Overview
   * Annotate: The annotation box is a way to add simple text to your time lapses. Place text in the box and hit the Add Annotation button to save the text in a special annotation file in the capture save folders. When you are finished capturing, you can add the annotation to your images using the annotation tab.
   * Add Annotation: Press this to save the text in the annotation box
 
-==Resize==
+==Schedule==
+On this tab you can schedule Chronolapse to start and stop capturing at specific times.
+When activated, end time will stop your capturing, even if it wasn't started with the
+start time scheduler. Note: All times are local to your machine.
 
-On this tab you can resize a folder of images. Simple select the source folder, the output folder, and the target size. The images will be scaled down to best fit the desired size. Note, if you use the same folder for the source and the output, the source images will be overwritten.
+*Item Overview*
+  * Start Time - The time you want to begin capturing
+  * Stop Time - The time you want to stop capturing
+  * Activate Schedule: Check this to 'lock in' your times and actually schedule the start and end
+
+==Adjust==
+
+On this tab you can resize or rotate a folder of images. Simple select the source folder, the output folder, and the target size or rotation. Note, if you use the same folder for the source and the output, the source images will be overwritten.
 
 *Item Overview*
 
@@ -49,6 +59,8 @@ On this tab you can resize a folder of images. Simple select the source folder, 
   * Width - The target width of your images, in pixels
   * Height - The target height of your images, in pixels
   * Resize - Press this to resize all the images in the source folder
+  * Rotation - Target rotation, in degrees
+  * Rotate - Press this to rotate all the images in the source folder
 
 ==Annotate==
 
@@ -96,6 +108,17 @@ Chronolapse uses MEncoder to encode the folders of images into video files. You 
   * Frame Rate: Select the frame rate you want for your movie
   * ReCalculate Estimate: Press this to estimate the length of your movie - takes the number of files in the source folder over the frame rate
   * Create Video: Press this to encode your video
+
+==Audio==
+Chronolapse uses MEncoder to dub audio onto your video files. If you
+need more control over the dubbing process, you should use MEncoder directly.
+
+*Item Overview*
+
+  * Video Source: This is the video file you want to add audio to
+  * Audio Source: This is the file containing your audio
+  * Output Folder: This is the folder in which your finished video will be placed
+  * Add Audio: Pless this to begin dubbing
 
 ==About==
 

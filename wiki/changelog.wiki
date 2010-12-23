@@ -2,6 +2,13 @@
 #labels Featured
 
 = Change Log=
+  * V 1.0.3 - 2010/12/23
+    * - fixed a bug with times under 1 second being fired 1000 times too fast
+    * - silently fails if set to capture 2 monitors but they are duplicated
+    * - added system wide hotkey -- doesnt seem to work right in wx so it is only part implemented
+    * - added audio tab to dub audio onto your timelapse
+    * - added a drop shadow option for annotations
+    * - added a schedule tab for scheduling starts and/or stops
 
   * V 1.0.2 - 2010/12/21
     * - Removed dependence on kml.pyc

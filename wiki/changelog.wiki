@@ -2,6 +2,11 @@
 #labels Featured
 
 = Change Log=
+  * V 1.0.4 - 2011/04/20
+    * - added a rough and dirty threading implementation for the mencoder call -- trying to fix hang in GUI form
+    * - changed popen to just pop up a window with output -- was hanging on mencoder call with no window to print to
+    * - fixed update check code
+
   * V 1.0.3 - 2010/12/23
     * - fixed a bug with times under 1 second being fired 1000 times too fast
     * - silently fails if set to capture 2 monitors but they are duplicated

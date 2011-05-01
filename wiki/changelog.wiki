@@ -2,6 +2,10 @@
 #labels Featured
 
 = Change Log=
+  * V 1.0.7 - 2011/05/01
+    * - fixed bug where audio encoding failed when video filename did NOT have a space in it :o
+    * - fixed bug like 1.0.4 where audio encoding hanged in exe form but not run from source
+
   * V 1.0.6 - 2011/04/30
     * - fixed faster-than-one-second capture rates. Automatically adds microseconds to the timestamps and filenames. Note: you probably won't get regular capture times with delays this small. (issue 16)
 

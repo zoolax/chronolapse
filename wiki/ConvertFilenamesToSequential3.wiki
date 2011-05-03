@@ -1,3 +1,5 @@
+#summary : Python 3.x version for converting filenames to sequential
+
 import os, math
 
 ###############################

@@ -1,0 +1,41 @@
+#labels Featured
+#Copy images to year/month/day folder structure
+
+In response to issue 26 - using chronolapse for long term capture and needing the images sorted into year/month/day folder hierarchy. 
+
+
+Save this as a python script (mine is filestofolders.py). Edit the SOURCEFOLDER, OUTFOLDER, and EXTENSION variables to point to your folder of images, the folder you want as the root of your year/month/day folders, and the extension of the image types you used. Run with python filestofolders.py. 
+
+Please be careful -- double check your paths before you start because this does zero checking before copying everything. 
+
+Use at your own risk blah blah blah.
+
+{{{
+#!usr/bin/python
+
+import os, shutil, time, datetime
+
+
+SOURCEFOLDER = 'test'
+OUTFOLDER = 'out'
+EXTENSION = '.jpg'  # extra precaution against processing unwanted files
+
+for f in os.listdir(SOURCEFOLDER):
+    if f.endswith(EXTENSION):
+        sourcefile = os.path.join(SOURCEFOLDER, f)
+
+        timestamp = os.path.splitext(f)[0]
+        year = timestamp[:4]
+        month = timestamp[4:6]
+        day = timestamp[6:8]
+
+        outfile = os.path.join(OUTFOLDER, year, month, day, f)
+
+        # make folders as necessary
+        try:
+          os.makedirs( os.path.dirname(outfile))
+        except:
+          pass
+        # copy it
+        shutil.copy(sourcefile, outfile)
+}}}

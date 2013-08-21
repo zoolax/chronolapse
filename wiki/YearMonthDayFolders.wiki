@@ -30,8 +30,8 @@ import os, shutil, datetime, logging
 def main():
 
     # change these as needed
-    folder = 'c:/users/collin/chronolapse'
-    output_folder = 'c:/users/collin/chronolapse/sorted'
+    folder = 'path/to/chronolapse/images'
+    output_folder = 'path/to/images/sorted'
     prefix = 'screen_'
     extension = '.jpg'
 
